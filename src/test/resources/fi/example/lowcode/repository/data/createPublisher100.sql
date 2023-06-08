@@ -1,1 +1,1 @@
-INSERT INTO PUBLISHER VALUES (100, '1234567-9', 'name100', 'https://name100.example.com');
+INSERT INTO PUBLISHER (ID, VERSION, NAME, URL, VAT) VALUES (100, 1, 'name100', 'https://name100.example.com', '1234567-9');

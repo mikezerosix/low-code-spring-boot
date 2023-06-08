@@ -1,0 +1,25 @@
+### Create publisher
+POST http://localhost:8080/api/publishers
+Content-Type: application/json
+
+{
+  "name": "name1",
+  "vat": "1234567-1"
+}
+
+### Update publisher 1
+PATCH http://localhost:8080/api/publishers/1
+Content-Type: application/json
+
+{
+  "name": "{{$random.alphanumeric(8)}}",
+  "vat": "1234567-1"
+}
+
+### List publishers
+GET http://localhost:8080/api/publishers
+Content-Type: application/json
+
+
+
+###

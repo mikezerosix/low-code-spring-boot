@@ -1,0 +1,25 @@
+### Create Author
+POST http://localhost:8080/api/authors
+Content-Type: application/json
+
+{
+  "firstname": "firstname2",
+  "lastname": "lastname2",
+  "publisher": "publishers/1"
+}
+
+### Update author 1
+PATCH http://localhost:8080/api/authors/1
+Content-Type: application/json
+
+{
+  "lastname": "{{$random.alphanumeric(12)}}"
+}
+
+### List authors
+GET http://localhost:8080/api/authors
+Content-Type: application/json
+
+
+
+###

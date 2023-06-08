@@ -1,0 +1,25 @@
+### Create Book
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "name": "a book",
+  "isbn": "lastname2",
+  "author": "author/1"
+}
+
+### Update Book 1
+PATCH http://localhost:8080/api/books/1
+Content-Type: application/json
+
+{
+  "name": "{{$random.alphanumeric(12)}}"
+}
+
+### List Books
+GET http://localhost:8080/api/books
+Content-Type: application/json
+
+
+
+###
