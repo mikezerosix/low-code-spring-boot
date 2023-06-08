@@ -1,0 +1,31 @@
+Configuration:
+  status: info
+  name: default
+  Appenders:
+
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "%d %p %C{1.} [%t] %m%n"        
+        
+    RollingFile:
+      - name: LOG_FILE
+        fileName: ${env:LOG_PATH:-/mnt/data/log}/application.log
+        filePattern: ${env:LOG_PATH:-/mnt/data/log}/application-%d{MM-dd-yy-HH-mm-ss}.log.gz
+        PatternLayout:
+          Pattern: "%d %p %C{1.} [%t] %m%n"
+          Filters:
+            ThresholdFilter:
+              level: info
+        Policies:
+          SizeBasedTriggeringPolicy:
+            size: 5120 KB
+
+  Loggers:
+    Root:
+      level: info
+      additivity: true
+      AppenderRef:
+        - ref: STDOUT
+        - ref: LOG_FILE

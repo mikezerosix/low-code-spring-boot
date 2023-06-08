@@ -1,0 +1,69 @@
+#server:
+#  port: 8080
+#  forward-headers-strategy: native
+
+spring:
+  application:
+    name: low-code-spring-boot
+
+  data:
+    rest:
+      base-path: /api
+
+# For Spring Content JPA path to match spring.data.rest.base-path, if it is used
+  content:
+    rest:
+      baseUri: ${spring.data.rest.base-path}
+
+  datasource:
+    url: jdbc:h2:file:${DB_PATH:/mnt/data/db}/${spring.application.name}.db;DB_CLOSE_DELAY=-1
+
+  flyway:
+    locations: db/{vendor}/migrations
+
+  jpa:
+    properties:
+      hibernate:
+        create_empty_composites:
+          enabled: true
+        format_sql: true
+        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    show-sql: true
+
+logging:
+  level:
+    com:
+      zaxxer:
+        hikari:
+          HikariConfig: DEBUG
+    org:
+      flywaydb:
+        core:
+          internal:
+            command:
+              DbMigrate: DEBUG
+      hibernate:
+        SQL: DEBUG
+        tool:
+          hbm2ddl: DEBUG
+        type:
+          descriptor:
+            sql: info
+      springframework:
+        security:
+          authorization:
+            method: DEBUG
+
+    fi:
+      example:
+        lowcode:
+          SecurityConfig: DEBUG
+          jwt: DEBUG
+          repository: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
