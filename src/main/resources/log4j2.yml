@@ -21,6 +21,16 @@ Configuration:
         Policies:
           SizeBasedTriggeringPolicy:
             size: 5120 KB
+      - name: SQL_FILE
+        fileName: ${env:LOG_PATH:-/mnt/data/log}/application-sql.log
+        filePattern: ${env:LOG_PATH:-/mnt/data/log}/application-sql-%d{MM-dd-yy-HH-mm-ss}.log.gz
+        PatternLayout:
+          pattern: "%n%m;%n"
+        Policies:
+          SizeBasedTriggeringPolicy:
+            size: 5120 KB
+          OnStartupTriggeringPolicy:
+            minSize: 0
 
   Loggers:
     Root:
@@ -29,3 +39,9 @@ Configuration:
       AppenderRef:
         - ref: STDOUT
         - ref: LOG_FILE
+    Logger:
+      - name:  org.hibernate.SQL
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: SQL_FILE

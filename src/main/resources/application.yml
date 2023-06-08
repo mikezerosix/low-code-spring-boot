@@ -19,7 +19,7 @@ spring:
     url: jdbc:h2:file:${DB_PATH:/mnt/data/db}/${spring.application.name}.db;DB_CLOSE_DELAY=-1
 
   flyway:
-    locations: db/{vendor}/migrations
+    locations: db/{vendor}/migration
 
   jpa:
     properties:

@@ -1,0 +1,1 @@
+INSERT INTO AUTHOR VALUES (101, 100, 'firstname101', 'lastname101');
