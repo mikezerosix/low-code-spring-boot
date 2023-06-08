@@ -8,6 +8,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 @Transactional
-public interface BookRepository extends
-        CrudRepository<Book, Long>,
-        RevisionRepository<Book, Long, Long> {}
+public interface BookRepository extends CrudRepository<Book, Long>, RevisionRepository<Book, Long, Long> {}

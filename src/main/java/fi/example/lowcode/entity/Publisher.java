@@ -6,22 +6,17 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import org.hibernate.envers.AuditOverride;
 import org.hibernate.envers.Audited;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.net.URL;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Audited
-@EntityListeners(AuditingEntityListener.class)
-public class Publisher {
+@AuditOverride(forClass = Auditable.class)
+public class Publisher extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -42,22 +37,4 @@ public class Publisher {
     @OneToMany(mappedBy = "publisher")
     public Set<Author> authors = new HashSet<>();
 
-    @Version
-    public long version;
-
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable = false)
-    public Date created;
-
-    @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date modified = new Date();
-
-    @CreatedBy
-    @Column(updatable = false)
-    public String creator;
-
-    @LastModifiedBy
-    public String modifier;
 }

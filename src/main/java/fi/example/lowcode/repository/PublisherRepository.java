@@ -17,6 +17,4 @@ import java.util.Optional;
 
 @RepositoryRestResource
 @Transactional
-public interface PublisherRepository extends
-        CrudRepository<Publisher, Long>,
-        RevisionRepository<Publisher, Long, Long> {}
+public interface PublisherRepository extends CrudRepository<Publisher, Long>, RevisionRepository<Publisher, Long, Long> {}

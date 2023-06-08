@@ -14,13 +14,6 @@ public class RestConfiguration implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         config.exposeIdsFor(Publisher.class, Author.class, Book.class);
-        //TODO: tighten security for production
-        cors.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("GET", "PATCH", "PUT", "POST", "OPTIONS", "DELETE")
-                .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Accept", "Authorization")
-                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
-                .allowCredentials(false);
     }
 
 }

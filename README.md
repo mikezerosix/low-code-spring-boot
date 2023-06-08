@@ -1,7 +1,9 @@
-# Read Me First
-The following was discovered as part of building this project:
-
-* No Docker Compose services found. As of now, the application won't start! Please add at least one service to the `compose.yaml` file.
+# Spring Boot low code demo 
+  Simple hierarchical fictional ER: Publisher -> Author -> Book  
+  Showcases low for Spring: Boot, Data (JPA), REST (HATEOAS), Evolutionary DB Design (dev tricks) and testing of Testing
+  Later tags add: 
+   1. Auditing, EntVers and IDEA Http client files 
+ 
 
 # Getting Started
 
