@@ -118,4 +118,31 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>ddl-gen</id>
+			<properties>
+				<skip.npm.build>true</skip.npm.build>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<environmentVariables>
+								<LOG_PATH>./target/log</LOG_PATH>
+							</environmentVariables>
+							<arguments>
+								<argument>--spring.datasource.url=jdbc:h2:mem:ddl-gen-db</argument>
+								<argument>--spring.flyway.enabled=false</argument>
+								<argument>--spring.jpa.generate-ddl=true</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 </project>
