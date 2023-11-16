@@ -121,6 +121,31 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>5.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>7.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java8</artifactId>
+			<version>7.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>7.0.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -135,7 +160,38 @@
 					</environmentVariables>
 				</configuration>
 			</plugin>
-
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M6</version>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>test</phase>
+						<configuration>
+							<excludedGroups>fi.example.lowcode.test.integration</excludedGroups>
+						</configuration>
+					</execution>
+					<execution>
+						<id>integration-test</id>
+						<phase>integration-test</phase>
+						<configuration>
+							<excludedGroups>fi.example.lowcode.test.unit</excludedGroups>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<!--                        <argLine>@{argLine}</argLine>-->
+					<includes>
+						<include>**/Test*.java</include>
+						<include>**/*Test.java</include>
+						<include>**/*Tests.java</include>
+						<include>**/Cucumber*.java</include>
+						<include>**/cucumber/**/*.java</include>
+					</includes>
+					<useSystemClassLoader>false</useSystemClassLoader>
+					<skipAfterFailureCount>1</skipAfterFailureCount>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
